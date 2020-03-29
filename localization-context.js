@@ -7,32 +7,39 @@ const SetLocaleContext = () => {
     en: {
       welcome: 'Hello',
       search: 'Search...',
-      setCalendar: 'Set Calendar',
+      shuttleBusSchedule: 'Shuttle Bus Schedule',
+      calendar: 'Calendar',
       accessibility: 'Accessibility',
-      language: 'Language',
-      language_description: 'Choose the preffered language for navigation menu, names etc.',
       help: 'Help',
-      back: 'Back'
+      back: 'Back',
+      destinationSearch: 'Choose your destination',
+      LOCATION_ALERT_TITLE: 'Location Services Required',
+      LOCATION_ALERT_MESSAGE: 'Location services has not been enabled. Please allow this app to use your location.',
+      LOCATION_ALERT_BUTTON: 'Open Settings'
     },
     fr: {
       welcome: 'Bonjour',
       search: 'Chercher...',
-      setCalendar: 'Calendrier',
+      calendar: 'Calendrier',
+      shuttleBusSchedule: 'Horaire des Navettes',
       accessibility: 'Accessibilité',
-      language: 'Language',
-      language_description: 'Choisissez la langue préférée pour le menu de navigation, les noms, etc.',
       help: 'Aide',
-      back: 'Retour'
+      back: 'Retour',
+      LOCATION_ALERT_TITLE: 'Services de localisation requis',
+      LOCATION_ALERT_MESSAGE: 'Les services de localisation n\'ont pas été activés. Veuillez autoriser cette application à utiliser vos informations de localisation.',
+      LOCATION_ALERT_BUTTON: 'Ouvrir les paramètres'
     },
     sp: {
       welcome: 'Hola',
       search: 'Buscar...',
-      setCalendar: 'Calendario',
+      calendar: 'Calendario',
+      shuttleBusSchedule: 'Horario de Autobuses',
       accessibility: 'Accesibilidad',
-      language: 'Idioma',
-      language_description: 'Elija el idioma preferido para el menú de navegación, nombres, etc.',
       help: 'Ayuda',
-      back: 'Atrás'
+      back: 'Atrás',
+      LOCATION_ALERT_TITLE: 'Servicios de ubicación requeridos',
+      LOCATION_ALERT_MESSAGE: 'Los servicios de ubicación no se han habilitado. Permita que esta aplicación use su información de ubicación.',
+      LOCATION_ALERT_BUTTON: 'Configuración abierta'
     }
   };
 

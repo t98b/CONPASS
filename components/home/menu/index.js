@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import {
+  View, Text, Image, TouchableOpacity
+} from 'react-native';
 import i18n from 'i18n-js';
-import { connect } from 'react-redux';
 import styles from './styles';
-import conpass from './conpass.png';
+import conpass from '../../../assets/icons/conpass.png';
 
 class Menu extends Component {
   render() {
@@ -11,14 +12,26 @@ class Menu extends Component {
       <View style={styles.container}>
         <Image style={styles.logo} source={conpass} />
         <View style={styles.options}>
-          <Text style={styles.option}>
-            {i18n.t('setCalendar')}
-          </Text>
+        <TouchableOpacity
+            onPress={() => {
+              return this.props.navigation.navigate('Calendar');
+            }}
+          >
+            <Text style={styles.option}>
+              {i18n.t('calendar')}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              return this.props.navigation.navigate('ShuttleSchedule');
+            }}
+          >
+            <Text style={styles.option}>
+              {i18n.t('shuttleBusSchedule')}
+            </Text>
+          </TouchableOpacity>
           <Text style={styles.option}>
             {i18n.t('accessibility')}
-          </Text>
-          <Text style={styles.option} onPress={() => { return this.props.navigation.navigate('Language'); }}>
-            {i18n.t('language')}
           </Text>
         </View>
         <Text style={styles.help}>
@@ -29,12 +42,4 @@ class Menu extends Component {
   }
 }
 
-/**
- * Redux store listener. This function will update
- * the connected component state whenever the store updates.
- */
-const mapStateToProps = (state) => {
-  return { language: state.language };
-};
-
-export default connect(mapStateToProps)(Menu);
+export default Menu;

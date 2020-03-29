@@ -7,9 +7,11 @@ https://www.figma.com/proto/o5WsQ4hyBRMp1bXYA9svxH/initial---archive-(dont-delet
 
 
 ## Setting up
-1. install expo cli on your machine <br/>
+1. install Node.js
+https://nodejs.org/en/download/
+2. install expo cli on your machine <br/>
 `npm install -g expo-cli`
-2. install dependencies <br/>
+3. install dependencies <br/>
 `yarn install`
-3. start app (see package.json scripts) <br/>
+4. start app (see package.json scripts) <br/>
 `expo start`

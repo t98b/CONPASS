@@ -2,12 +2,11 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    zIndex: 5,
     backgroundColor: '#fff',
     alignItems: 'center',
-  },
-  contentContainer: {
-    flex: 1,
-    paddingTop: 2,
+    position: 'absolute',
+    bottom: 0
   },
   sectionHeader: {
     paddingTop: 2,
