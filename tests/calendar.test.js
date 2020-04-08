@@ -1,10 +1,10 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import renderer from 'react-test-renderer';
-import DashboardScreen from '../components/home/menu/calendar/Screens/DashboardScreen';
+import DashboardScreen from '../components/menu/calendar/Screens/DashboardScreen';
 
 const navigation = {
-  state: { params: { events: { items: [{ start: '1234', summary: '1234', end: '1234' }] } } }
+  state: { params: { events: { items: [{ start: '1234', summary: '1234', end: '1234' }] } } },
+
 };
 
 
@@ -152,4 +152,13 @@ it('Should return a string', () => {
     .getInstance();
   const result = dashboardScreenComponent.sendPushNotification();
   expect(result).toStrictEqual('Notifications sent');
+});
+
+it('Should send address', () => {
+  navigation.navigate = jest.fn();
+  const dashboardScreenComponent = renderer
+    .create(<DashboardScreen navigation={navigation} />)
+    .getInstance();
+  const result = dashboardScreenComponent.sendDirections('address');
+  expect(result).toStrictEqual('address sent');
 });
