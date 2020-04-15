@@ -111,11 +111,13 @@ export default class DashboardScreen extends Component {
     const notifyArray = [];
     events.items.forEach((element) => {
       const date = new Date(element.start.dateTime);
-      if (element.summary.includes('conpass') && date.getTime() > (new Date()).getTime()) {
-        notifyArray.push({
-          startDate: element.start.dateTime,
-          summary: element.summary,
-        });
+      if (element.summary) {
+        if (element.summary.includes('conpass') && date.getTime() > (new Date()).getTime()) {
+          notifyArray.push({
+            startDate: element.start.dateTime,
+            summary: element.summary,
+          });
+        }
       }
     });
     return notifyArray;
@@ -270,7 +272,7 @@ export default class DashboardScreen extends Component {
                `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
                [
                  { text: 'Cancel' },
-                 { text: 'Get Directions', onPress: () => { description === '' ? this.sendDirections(address.split(',')[0]) : this.sendDirections(description); } },
+                 { text: 'Get Directions', onPress: () => { address ? this.sendDirections(address.split(',')[0]) : this.sendDirections(description.split('\n')[0]); } },
                ],
                { cancelable: false });
            }}
