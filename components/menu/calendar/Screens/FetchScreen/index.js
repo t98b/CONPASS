@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, AsyncStorage, ActivityIndicator } from 'react-native';
+import firebase from 'firebase';
 import CheckboxGroup from './CheckboxGroup';
 
 export default class FetchScreen extends Component {
@@ -8,23 +9,20 @@ export default class FetchScreen extends Component {
     this.state = {
       calendarsGeneralInfo: [],
     };
-    //this.getDatta=this.getDatta.bind(this);
   }
 
   componentDidMount() {
-    //console.log('length:');
-    console.log(this.state.calendarsGeneralInfo.length);
-    this.getDatta();
+    this.getUserCalendarsGeneralData();
     if (this.state.calendarsGeneralInfo.length === 0) {
-      //console.log('am here');
       this.forceUpdate();
     }
-    console.log('--!!!_--~~~~-  The moment of truth ');
     this.asyncStorageChecker();
   }
 
-  // eslint-disable-next-line consistent-return
-  getDatta() {
+  /**
+ * This function returns the CheckboxGroup component
+ */
+  getUserCalendarsGeneralData() {
     if (this.props.navigation.state.params) {
       this.setState({ calendarsGeneralInfo: this.props.navigation.state.params.userCalendarsInfo },
         () => { this.forceUpdate(); });
@@ -34,36 +32,42 @@ export default class FetchScreen extends Component {
           <CheckboxGroup options={this.state.calendarsGeneralInfo} />
         </View>
       );
-    }
+    } return null;
   }
 
+  /**
+   * This function checks if events item exists in the JSON file.
+   */
   asyncStorageChecker = async () => {
     const evnts = await AsyncStorage.getItem('events');
     const events = JSON.parse(evnts);
 
-    if(evnts != null){
+    if (evnts !== null) {
       this.props.navigation.navigate('DashboardScreen', { events });
-    }else{
-      console.log('Check AsyncStorage. evnts is null!');
+    } else {
+      firebase.auth().signOut();
     }
   }
 
+/**
+ * The function handles navigation to DashboardScreen.
+ * It's used as a callback function from CheckboxGroup
+ * @param {String} events - A stringified events array.
+ */
 navigationHandler=async (events) => {
   this.props.navigation.navigate('DashboardScreen', { events });
 }
 
 render() {
-  console.log('in render');
-  //console.log(this.state.calendarsGeneralInfo);
-
   return (
     <View>
       {this.props.navigation.state.params
-        // eslint-disable-next-line react/jsx-wrap-multilines
-        ? <CheckboxGroup
-          options={this.state.calendarsGeneralInfo}
-          navigationHandlerCallback={this.navigationHandler}
-        />
+        ? (
+          <CheckboxGroup
+            options={this.state.calendarsGeneralInfo}
+            navigationHandlerCallback={this.navigationHandler}
+          />
+        )
         : <ActivityIndicator />}
     </View>
   );
